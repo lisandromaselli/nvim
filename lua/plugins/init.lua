@@ -18,7 +18,8 @@ return {
         "gopls",
         "yaml-language-server",
         "golangci-lint",
-        "lua-language-server"
+        "lua-language-server",
+        "ruby-lsp"
       }
     },
   },
