@@ -100,3 +100,5 @@ lspconfig.ruby_lsp.setup({
 lspconfig.tsserver.setup({})
 
 lspconfig.jsonnet_ls.setup({})
+
+lspconfig.terraformls.setup({})
