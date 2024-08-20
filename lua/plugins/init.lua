@@ -9,6 +9,16 @@ return {
     "nvim-tree/nvim-tree.lua",
     opts = {
       git = { enable = true },
+      filters = {
+        dotfiles = false,
+        custom = { "^\\.git", "node_modules" }
+      },
+      view = {
+        width = {
+          min = 20,
+          max = -1,
+        }
+      }
     },
   },
   {
@@ -50,11 +60,12 @@ return {
   },
   {
     "nvim-telescope/telescope.nvim",
-    opts = {
-      defaults = {
-        file_ignore_patterns = { "node_modules", ".git" },
-      },
-    },
+    opts = function()
+      local conf = require "nvchad.configs.telescope"
+      conf.defaults.file_ignore_patterns = { "node_modules", ".git" }
+
+      return conf
+    end,
   },
   {
     "nvim-treesitter/nvim-treesitter",
