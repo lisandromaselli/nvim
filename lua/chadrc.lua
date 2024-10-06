@@ -1,6 +1,25 @@
+---@type ChadrcConfig
+local M = {}
 
----@type ChadrcConfig 
- local M = {}
- M.plugins = "plugins"
- M.mappings = require "mappings"
+M.base46 = {
+  transparency = false,
+  integrations = {
+    "blankline",
+    "cmp",
+    "codeactionmenu",
+    "dap",
+    "devicons",
+    "hop",
+    "lsp",
+    "mason",
+    "neogit",
+    "notify",
+    "nvimtree",
+    "rainbowdelimiters",
+    "semantic_tokens",
+    "todo",
+    "whichkey",
+  },
+}
+
 return M

@@ -97,8 +97,10 @@ lspconfig.ruby_lsp.setup({
   end,
 })
 
-lspconfig.tsserver.setup({})
+lspconfig.ts_ls.setup({})
 
 lspconfig.jsonnet_ls.setup({})
 
 lspconfig.terraformls.setup({})
+
+lspconfig.templ.setup({})
