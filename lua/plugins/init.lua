@@ -11,7 +11,21 @@ return {
       git = { enable = true },
       filters = {
         dotfiles = false,
-        custom = { "^\\.git", "node_modules" }
+        git_ignored = false,
+        custom = { "^\\.git$", "node_modules" }
+      },
+      renderer = {
+        highlight_git = true,
+        highlight_opened_files = "none",
+        special_files = {},
+        icons = {
+          show = {
+            git = true,
+            folder = true,
+            file = true,
+            folder_arrow = true,
+          },
+        },
       },
       view = {
         width = {
