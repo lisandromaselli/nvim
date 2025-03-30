@@ -74,11 +74,51 @@ return {
   },
   {
     "nvim-telescope/telescope.nvim",
+    dependencies = {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      "nvim-lua/plenary.nvim",
+    },
     opts = function()
       local conf = require "nvchad.configs.telescope"
-      conf.defaults.file_ignore_patterns = { "node_modules", ".git" }
+
+      -- Preserve your original ignore patterns
+      conf.defaults.file_ignore_patterns = { "node_modules", "^%.git/" }
+
+      -- Add visual enhancements and sensible defaults
+      conf.defaults.selection_caret = "➜ "
+      conf.defaults.path_display = { "truncate" }
+
+      -- Improve sorting and fuzzy searching
+      conf.extensions = {
+        fzf = {
+          fuzzy = true,
+          override_generic_sorter = true,
+          override_file_sorter = true,
+          case_mode = "smart_case",
+        },
+      }
+
+      -- Better file picker defaults (show hidden files except ignored)
+      conf.pickers = {
+        find_files = {
+          hidden = true,
+          no_ignore = false,
+        },
+        live_grep = {
+          additional_args = function()
+            return { "--hidden" }
+          end,
+        },
+      }
 
       return conf
+    end,
+
+    -- Enable Telescope extensions
+    config = function(_, opts)
+      local telescope = require("telescope")
+      telescope.setup(opts)
+      telescope.load_extension("fzf")
     end,
   },
   {
