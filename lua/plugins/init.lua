@@ -72,6 +72,7 @@ return {
       return require "configs.null-ls"
     end,
   },
+  { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
