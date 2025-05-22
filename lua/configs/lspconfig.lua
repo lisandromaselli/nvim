@@ -104,3 +104,5 @@ lspconfig.jsonnet_ls.setup({})
 lspconfig.terraformls.setup({})
 
 lspconfig.templ.setup({})
+
+lspconfig.dartls.setup({})

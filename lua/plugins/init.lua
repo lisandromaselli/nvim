@@ -135,7 +135,6 @@ return {
     },
     config = function(_, opts)
       require("nvim-treesitter.install").prefer_git = true
-      dofile(vim.g.base46_cache .. "syntax")
       require("nvim-treesitter.configs").setup(opts)
     end
   },

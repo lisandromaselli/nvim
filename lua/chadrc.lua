@@ -2,7 +2,7 @@
 local M = {}
 
 M.base46 = {
-  theme="everforest_light",
+  theme="custom_v1",
   transparency = false,
   integrations = {
     "blankline",
