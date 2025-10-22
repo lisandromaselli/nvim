@@ -126,7 +126,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = { "c", "vim", "lua", "vimdoc", "go", "gomod" },
-      hightlight = {
+      highlight = {
         enable = true,
         use_languagetree = true,
         additional_vim_regex_highlighting = true,
