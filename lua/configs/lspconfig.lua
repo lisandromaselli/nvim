@@ -1,12 +1,13 @@
 local on_attach = require('nvchad.configs.lspconfig').on_attach
 local capabilities = require('nvchad.configs.lspconfig').capabilities
 
-local lspconfig = require("lspconfig")
 local util = require "lspconfig/util"
 
-lspconfig.gopls.setup {
+vim.lsp.enable('gopls')
+
+vim.lsp.config('gopls', {
   on_attach = on_attach,
-  capabilities=capabilities,
+  capabilities = capabilities,
   cmd = {"gopls"},
   filetypes = {"go","gomod","gowork","gotmpl"},
   root_dir = util.root_pattern("go.work","go.mod",".git"),
@@ -23,9 +24,10 @@ lspconfig.gopls.setup {
       },
     },
   },
-}
+})
 
-lspconfig.yamlls.setup {
+
+vim.lsp.config('yamlls', {
   on_attach = on_attach,
   capabilities = capabilities,
   filetypes = { "yml", "yaml", "yaml.docker-compose" },
@@ -45,10 +47,10 @@ lspconfig.yamlls.setup {
       },
     }
   }
-}
+})
 
--- Ruby
--- textDocument/diagnostic support until 0.10.0 is released
+vim.lsp.enable('yamlls')
+
 _timers = {}
 local function setup_diagnostics(client, buffer)
   if require("vim.lsp.diagnostic")._enable then
@@ -74,7 +76,7 @@ local function setup_diagnostics(client, buffer)
     end)
   end
 
-  diagnostic_handler() -- to request diagnostics on buffer when first attaching
+  diagnostic_handler()
 
   vim.api.nvim_buf_attach(buffer, false, {
     on_lines = function()
@@ -91,18 +93,10 @@ local function setup_diagnostics(client, buffer)
   })
 end
 
-lspconfig.ruby_lsp.setup({
+vim.lsp.enable('ruby_lsp')
+vim.lsp.config('ruby_lsp', {
   on_attach = function(client, buffer)
     setup_diagnostics(client, buffer)
   end,
 })
 
-lspconfig.ts_ls.setup({})
-
-lspconfig.jsonnet_ls.setup({})
-
-lspconfig.terraformls.setup({})
-
-lspconfig.templ.setup({})
-
-lspconfig.dartls.setup({})
