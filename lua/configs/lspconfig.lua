@@ -1,16 +1,9 @@
 local on_attach = require('nvchad.configs.lspconfig').on_attach
 local capabilities = require('nvchad.configs.lspconfig').capabilities
 
-local util = require "lspconfig/util"
-
-vim.lsp.enable('gopls')
-
 vim.lsp.config('gopls', {
   on_attach = on_attach,
   capabilities = capabilities,
-  cmd = {"gopls"},
-  filetypes = {"go","gomod","gowork","gotmpl"},
-  root_dir = util.root_pattern("go.work","go.mod",".git"),
   settings = {
     gopls = {
       usePlaceholders = true,
@@ -26,6 +19,7 @@ vim.lsp.config('gopls', {
   },
 })
 
+vim.lsp.enable('gopls')
 
 vim.lsp.config('yamlls', {
   on_attach = on_attach,

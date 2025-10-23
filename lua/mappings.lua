@@ -4,7 +4,7 @@ local map = vim.keymap.set
 
 map("n", "<leader>gg", "<cmd>LazyGit<cr>", { desc = "Lazy Git" })
 map("n", "<leader>gr", "<cmd>Telescope lsp_references<CR>", { desc = "Telescope Lsp references" })
-map("n", "<leader>dl", "<cmd>Telescope diagnostics<cr>", { desc = "Telescope diagnostics" })
+map("n", "<leader>dl", "<cmd>Telescope diagnostics disable_coordinates=true<cr>", { desc = "Telescope diagnostics" })
 map("n", "<leader>db", "<cmd> DapToggleBreakpoint <CR>", { desc = "Add breakpoint at line" })
 map("n", "<leader>dus",
   function()
@@ -32,8 +32,6 @@ map("n", "<C-k>", vim.lsp.buf.signature_help, { desc = "Show signature help" })
 map("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename symbol" })
 map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code actions" })
 map("n", "<leader>f", vim.lsp.buf.format, { desc = "Format buffer" })
-map("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous diagnostic" })
-map("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
 map("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic" })
 map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Diagnostic list" })
 
@@ -109,27 +107,5 @@ end, { desc = "LSP Rewrite refactor" })
 -- Enhanced diagnostics navigation
 map("n", "<leader>ld", vim.diagnostic.open_float, { desc = "LSP Show diagnostic" })
 map("n", "<leader>lD", vim.diagnostic.setloclist, { desc = "LSP Diagnostic list" })
-map("n", "[e", function()
-  vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
-end, { desc = "Previous error" })
-map("n", "]e", function()
-  vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
-end, { desc = "Next error" })
-map("n", "[w", function()
-  vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.WARN })
-end, { desc = "Previous warning" })
-map("n", "]w", function()
-  vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.WARN })
-end, { desc = "Next warning" })
 -- Telescope LSP integrations
 map("n", "<leader>lS", "<cmd>Telescope lsp_document_symbols<cr>", { desc = "LSP Document symbols" })
-
--- Language-specific shortcuts (keeping Go for backward compatibility)
-map("n", "<leader>gi", function()
-  vim.lsp.buf.code_action({
-    filter = function(action)
-      return action.kind and action.kind:match("source.organizeImports")
-    end,
-    apply = true
-  })
-end, { desc = "Go organize imports" })
